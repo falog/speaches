@@ -29,11 +29,11 @@ RUN --mount=type=cache,id=cache-key-uv-cache,target=/root/.cache/uv \
 COPY --chown=ubuntu . .
 
 # 再度キャッシュを使用して同期
-RUN --mount=type=cache,id=cache-key-uv-cache,target=/root/.cache/uv \
-    uv sync --frozen --compile-bytecode --extra ui
+#RUN --mount=type=cache,id=cache-key-uv-cache,target=/root/.cache/uv \
+#    uv sync --frozen --compile-bytecode --extra ui
 
 # HuggingFaceのキャッシュディレクトリ作成
-RUN mkdir -p $HOME/.cache/huggingface/hub
+#RUN mkdir -p $HOME/.cache/huggingface/hub
 
 # 環境変数の設定
 ENV UVICORN_HOST=0.0.0.0
