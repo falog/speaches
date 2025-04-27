@@ -21,7 +21,7 @@ WORKDIR $HOME/speaches
 COPY --chown=ubuntu --from=ghcr.io/astral-sh/uv:0.6.1 /uv /bin/uv
 
 # キャッシュのマウント設定
-RUN --mount=type=cache,id=cache_key_uv_cache,target=/root/.cache/uv \
+RUN --mount=type=cache,id=cache-key-uv-cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --compile-bytecode --no-install-project
@@ -29,7 +29,7 @@ RUN --mount=type=cache,id=cache_key_uv_cache,target=/root/.cache/uv \
 COPY --chown=ubuntu . .
 
 # 再度キャッシュを使用して同期
-RUN --mount=type=cache,id=cache_key_uv_cache,target=/root/.cache/uv \
+RUN --mount=type=cache,id=cache-key-uv-cache,target=/root/.cache/uv \
     uv sync --frozen --compile-bytecode --extra ui
 
 # HuggingFaceのキャッシュディレクトリ作成
